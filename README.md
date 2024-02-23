@@ -7,8 +7,6 @@ Our platform streamlines processes predicts risks proactively and fosters access
 Website
 www.linkedin.com/company/insur-cap
 
-DEMO: https://databutton.com/v/fn0hgnv6
-
 
 THE DATA PROBLEM
 
@@ -25,6 +23,7 @@ Our platform streamlines LAMs processes, predicts risks proactively, and fosters
 
 
 Redefining insurance. One image at a time. 
+DEMO: https://databutton.com/v/fn0hgnv6
 
 # Algorithmically driven augmented underwriting
 Our platform architecture streamlines LAMs {Large Action/Agentic Model} orchestration processes, predicts risks proactively, and fosters accessible communication (touch point) through chatbot-based UI conversation flow. Multi-modal orchestration for customer UI delivers more/new datasets and data points for augmenting underwriting. The LAM {Large Action/Agentic Model} empower algorithmically driven architecture and process flow decision tree.
