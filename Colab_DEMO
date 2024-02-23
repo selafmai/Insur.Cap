@@ -1,0 +1,69 @@
+# **Build an AI Image Captioning App With GPT-4 Vision API in 3 Min**
+
+
+🚀Custom AI Solutions
+
+
+!pip install openai
+!pip install -q gradio
+
+import os
+import openai
+from getpass import getpass
+openai.api_key = getpass("...")
+
+
+# OAI Vision Api Test
+
+import base64
+
+# Function to encode the image
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
+
+# Image Captioning AI App with Gradio
+
+def caption_image(image_path):
+  encoded_image = encode_image(image_path)
+
+  result = openai.chat.completions.create(
+    model = "gpt-4-vision-preview",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Describe the image. Additionally outline from image the caption objects and items with the attribute recognition. If there are OCR captions, also extract this data from the image.Outline the image description like a plain paragraph text with few sentences.Additional outline in bullets points the KEY ELEMENTS if there is present the:"},
+                {"type": "text", "text": "-[item] caption\n-[object] detection\n-[attribute] recognition\n-[image] segmentation\n-[OCR] text and number extraction\n-[adjective] semantic search\n-[subject] from the image\n-[doing action]\n-[mobility]\n-[transportation]\n-[person]\n-[animal]\n-[furniture]\n-[electronics]\n-[house appliances]\n-[landscape]\n-[environment]\n-[liability] context search\n  Outline only the captioned KEY ELEMENTS categories as bullet points."},
+
+                {"type": "image_url",
+                "image_url": f"data:image/jpeg;base64,{encoded_image}"},
+            ]
+        },
+    ],
+    max_tokens=600,
+    )
+
+  return result.choices[0].message.content
+
+import gradio as gr
+import os
+
+
+
+demo = gr.Interface(
+    caption_image,
+    gr.Image(type="filepath"),
+    "text",
+    live=True,
+    css = """.gradio-container {background-color: cyan;}.btn-primary {background-color: cyan;color: white;border: 2px solid white;}"""
+)
+
+if __name__ == "__main__":
+    demo.launch()
+
+!git clone https://huggingface.co/spaces/designfailure/Insur.Co
+
+!git add app.py
+!git commit -m "Add application file"
+!git push
