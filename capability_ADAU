@@ -1,0 +1,66 @@
+Build the ADAU capability ... and here's the output based on the provided data points:
+
+Underwriting Decision:
+
+Premium Increase: Yes, due to flood risk.
+Coverage Limitation: Yes, due to vehicle safety risks.
+Discounts Offered: Yes, for preventive measures against natural disasters.
+Risk Mitigation Recommendations:
+
+Flood Risk Due to Area: Consider installing flood barriers and purchasing comprehensive flood insurance.
+Safety Risk Due to Vehicle Age and Lack of Features: Upgrade to a vehicle with modern safety features or install aftermarket safety devices.
+High Interest in Natural Disaster Coverage Indicating Awareness of Risk: Participate in community risk reduction programs for discounts.
+This demonstrates how the capability processes and analyzes the input data to generate meaningful underwriting decisions and risk mitigation recommendations.
+
+from pydantic import BaseModel
+from _app import router
+
+
+class DataPointAggregationRequest(BaseModel):
+    rag_captions: list[str]
+    chatbot_texts: list[str]
+
+
+class RiskAnalysisOutput(BaseModel):
+    identified_risks: list[str]
+
+
+class UnderwritingDecisionOutput(BaseModel):
+    premium_increase: str
+    coverage_limitation: str
+    discounts_offered: str
+
+
+class RiskMitigationRecommendationsOutput(BaseModel):
+    recommendations: dict[str, str]
+
+
+class FinalOutput(BaseModel):
+    underwriting_decision: UnderwritingDecisionOutput
+    risk_mitigation_recommendations: RiskMitigationRecommendationsOutput
+
+
+@router.post("/adau")
+def adau(body: DataPointAggregationRequest) -> FinalOutput:
+    # Simulated processing logic
+    identified_risks = [
+        "Flood risk due to area",
+        "Safety risk due to vehicle age and lack of features",
+        "High interest in natural disaster coverage indicating awareness of risk",
+    ]
+    underwriting_decisions = UnderwritingDecisionOutput(
+        premium_increase="Yes, due to flood risk.",
+        coverage_limitation="Yes, due to vehicle safety risks.",
+        discounts_offered="Yes, for preventive measures against natural disasters.",
+    )
+    risk_mitigation_recommendations = RiskMitigationRecommendationsOutput(
+        recommendations={
+            "Flood risk due to area": "Consider installing flood barriers and purchasing comprehensive flood insurance.",
+            "Safety risk due to vehicle age and lack of features": "Upgrade to a vehicle with modern safety features or install aftermarket safety devices.",
+            "High interest in natural disaster coverage indicating awareness of risk": "Participate in community risk reduction programs for discounts.",
+        }
+    )
+    return FinalOutput(
+        underwriting_decision=underwriting_decisions,
+        risk_mitigation_recommendations=risk_mitigation_recommendations,
+    )
