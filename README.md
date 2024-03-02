@@ -1,4 +1,7 @@
 # Insur.Cap
+
+https://github.com/topics/openai-hackathon
+
 Redefining insurance. One image at a time.
 Insur.Cap transforms risk management through algorithmically driven augmented underwriting, employing AI and computer vision with image-caption fusion for comprehensive coverage, resolving limitations in traditional insurance processes.
 
